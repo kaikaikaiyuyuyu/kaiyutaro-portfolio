@@ -1,0 +1,24 @@
+<section class="project">
+
+  <div class="project-images">
+    <img src="/img/projects/<%= project.slug %>/01.jpg" alt="">
+    <img src="/img/projects/<%= project.slug %>/02.jpg" alt="">
+    <img src="/img/projects/<%= project.slug %>/03.jpg" alt="">
+  </div>
+
+  <div class="project-body">
+    <h1 class="project-title"><%= project.title %></h1>
+    <p class="project-desc"><%= project.desc %></p>
+  </div>
+
+  <div class="project-video">
+    <iframe
+      src="https://www.youtube.com/embed/<%= project.youtubeId %>"
+      title="<%= project.title %>"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+</section>

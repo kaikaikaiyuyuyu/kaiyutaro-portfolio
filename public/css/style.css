@@ -1,0 +1,17 @@
+/* public/css/style.css */
+
+/* base */
+@import url("/css/base.css");
+
+/* layout */
+@import url("/css/layout.css");
+
+/* components */
+@import url("/css/components.css");
+
+/* pages */
+@import url("/css/pages/home.css");
+@import url("/css/pages/hero.css");
+@import url("/css/pages/about.css");
+
+@import url("/css/pages/project.css");

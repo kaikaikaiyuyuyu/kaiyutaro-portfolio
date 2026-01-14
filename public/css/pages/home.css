@@ -1,0 +1,63 @@
+/* ---- Home / Grid ---- */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 22px;
+}
+
+.card{
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow: var(--shadow);
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+
+.card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,.16);
+  background: rgba(255,255,255,.03);
+}
+
+.card__link{display:block; color:inherit; text-decoration:none;}
+
+.card__meta{
+  padding: 16px 16px 18px;
+}
+
+.card__title{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:10px;
+  font-weight:800;
+  letter-spacing:.02em;
+}
+
+.card__year{
+  color: var(--muted);
+  font-weight:700;
+}
+
+.card__desc{
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: .92;
+}
+
+.card__tags{
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* responsive */
+@media (max-width: 1100px){
+  .grid{grid-template-columns: repeat(2, minmax(0, 1fr));}
+}
+@media (max-width: 640px){
+  .grid{grid-template-columns: 1fr;}
+}

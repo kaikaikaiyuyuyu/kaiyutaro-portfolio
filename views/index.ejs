@@ -1,0 +1,55 @@
+<%- include("hero") %>
+
+<section class="filters" id="projects">
+  <button class="chip is-active" data-filter="all">All Projects</button>
+  <button class="chip" data-filter="Movie">Movie</button>
+  <button class="chip" data-filter="Animation">Animation</button>
+  <button class="chip" data-filter="Logo">Logo</button>
+  <button class="chip" data-filter="Branding">Branding</button>
+  <button class="chip" data-filter="Package">Package</button>
+  <button class="chip" data-filter="Print">Print</button>
+  <button class="chip" data-filter="Book">Book</button>
+  <button class="chip" data-filter="Web">Web</button>
+  <button class="chip chip--ghost" data-filter="Confidential">Confidential</button>
+</section>
+
+<section class="grid">
+  <% (projects || []).forEach(p => { %>
+    <article class="card" data-tags="<%= (p.tags || []).join(',') %>">
+      <!-- ✅ 作品詳細に飛ぶ（slugがある前提） -->
+      <a class="card__link" href="/projects/<%= p.slug %>">
+        <div class="card__thumb">
+          <!-- ✅ まずは必ず画像サムネ -->
+          <img
+            class="thumb__img"
+            src="<%= p.thumb %>"
+            alt="<%= p.title %> thumbnail"
+            loading="lazy"
+          />
+
+          <!-- ✅ hoverで動画に切り替えたい作品だけ video を置く -->
+          <% if (p.video) { %>
+            <video
+              class="thumb__video"
+              src="<%= p.video %>"
+              muted
+              loop
+              playsinline
+              preload="metadata"
+            ></video>
+          <% } %>
+        </div>
+
+        <div class="card__meta">
+          <div class="card__title">
+            <span><%= p.title %></span>
+            <span class="card__year"><%= p.year %></span>
+          </div>
+
+          <div class="card__desc"><%= p.desc %></div>
+          <div class="card__tags"><%= (p.tags || []).join(" ") %></div>
+        </div>
+      </a>
+    </article>
+  <% }) %>
+</section>

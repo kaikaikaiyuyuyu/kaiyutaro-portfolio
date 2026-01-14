@@ -1,0 +1,46 @@
+.site-header{
+  position:fixed;
+  top:0; left:0; right:0;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 28px;
+  background: rgba(0,0,0,.55);
+  border-bottom:1px solid var(--line);
+  backdrop-filter: blur(10px);
+  z-index:50;
+}
+
+.brand{
+  color:var(--text);
+  text-decoration:none;
+  font-weight:800;
+  letter-spacing:.06em;
+}
+
+.nav{display:flex; gap:18px; align-items:center;}
+.nav a{
+  color:var(--text);
+  text-decoration:none;
+  font-size:14px;
+  opacity:.85;
+}
+.nav a:hover{opacity:1}
+
+main{
+  padding: 92px 28px 84px; /* ← fixed header分を最初から吸収 */
+}
+
+
+/* spacer because header is fixed */
+.topbar-spacer{height:64px}
+
+
+/* footer */
+.site-footer{
+  margin-top:60px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+}

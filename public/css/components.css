@@ -1,0 +1,195 @@
+/* ---- Chips ---- */
+.filters{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  padding: 16px 0 18px;
+  border-bottom:1px solid var(--line);
+}
+
+.chip{
+  appearance:none;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  cursor:pointer;
+  opacity:.9;
+  transition: transform .12s ease, opacity .12s ease, background .12s ease, border-color .12s ease;
+}
+
+.chip:hover{opacity:1; transform:translateY(-1px);}
+
+.chip.is-active{
+  background: rgba(255,255,255,.16);
+  border-color: rgba(255,255,255,.18);
+}
+
+.chip--ghost{
+  background: transparent;
+  border-style: dashed;
+  opacity:.75;
+}
+
+/* grid cards */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap:28px;
+  margin-top:18px;
+}
+
+.card{
+  border-radius:20px;
+  overflow:hidden;
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.08);
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+
+.card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.18);
+  background:rgba(255,255,255,.03);
+}
+
+.card__link{
+  display:block;
+  text-decoration:none;
+  color:inherit;
+}
+
+/* thumb area */
+.card__thumb{
+  aspect-ratio: 4 / 3;
+  background: #0f0f0f;
+  overflow:hidden;
+}
+
+.card__thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform: scale(1.02);
+  transition: transform .35s ease;
+}
+
+.card__thumb video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform: scale(1.02);
+  transition: transform .35s ease;
+  display:block;
+}
+
+.card:hover .card__thumb video{
+  transform: scale(1.07);
+}
+
+
+.card:hover .card__thumb img{
+  transform: scale(1.07);
+}
+
+/* meta area */
+.card__meta{
+  padding:14px 14px 16px;
+}
+
+.card__title{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  font-weight:800;
+  letter-spacing:.02em;
+}
+
+.card__year{
+  color:var(--muted);
+  font-weight:700;
+}
+
+.card__desc{
+  margin-top:10px;
+  color:var(--text);
+  opacity:.92;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.card__tags{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* ---- Card Thumb Fix ---- */
+.card__thumb{
+  aspect-ratio: 4 / 3;
+  background: #0f0f0f;
+  overflow: hidden;
+}
+
+.card__thumb img,
+.card__thumb video{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* hover zoom */
+.card:hover .card__thumb img,
+.card:hover .card__thumb video{
+  transform: scale(1.06);
+}
+.card__thumb img,
+.card__thumb video{
+  transform: scale(1.02);
+  transition: transform .35s ease;
+}
+
+/* --- card thumb (image + hover video) --- */
+.card__thumb{
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background:#0f0f0f;
+  overflow:hidden;
+  border-radius: 18px;
+}
+
+.thumb__img,
+.thumb__video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* 画像は少しだけ拡大（既にやっててもOK） */
+.thumb__img{
+  transform: scale(1.02);
+  transition: transform .35s ease, opacity .2s ease;
+}
+
+/* 動画は最初は見えない */
+.thumb__video{
+  opacity:0;
+  transition: opacity .2s ease;
+}
+
+/* hoverで動画を前面に */
+.card:hover .thumb__video{
+  opacity:1;
+}
+
+/* hover時、画像は少し薄くして切替感を出す */
+.card:hover .thumb__img{
+  opacity:.15;
+  transform: scale(1.07);
+}
