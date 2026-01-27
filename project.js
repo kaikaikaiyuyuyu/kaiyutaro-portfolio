@@ -176,7 +176,6 @@ const projects = [
     images: ["/img/projects/toritabi/121.png","/img/projects/toritabi/122.png","/img/projects/toritabi/124.png"],
     youtubeEmbedUrls: [
     "https://www.youtube.com/embed/09zV9ToiIj8?si=PIqVlpmJ7ZNXL6Z8",
-    "https://www.youtube.com/embed/W07p0EVPEsQ?list=PLQgNiP4cBzTudDyMFi45DI1PjuRvm-fOt"
   ],
   },
                   {
