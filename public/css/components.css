@@ -1,40 +1,43 @@
-/* ---- Chips ---- */
+/* =========================
+   Filters (chip) - text only
+========================= */
 .filters{
   display:flex;
-  gap:10px;
+  gap:18px;
   flex-wrap:wrap;
   align-items:center;
-  padding: 16px 0 18px;
-  border-bottom:1px solid var(--line);
+  margin: 18px 0 28px;
 }
 
 .chip{
   appearance:none;
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.06);
-  color: var(--text);
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-size: 13px;
+  border:0;
+  background:transparent;
+  padding:0;
+  border-radius:0;
+  color: rgba(255,255,255,.62);
+  font-size:13px;
+  letter-spacing:.02em;
   cursor:pointer;
-  opacity:.9;
-  transition: transform .12s ease, opacity .12s ease, background .12s ease, border-color .12s ease;
+  transition: color .18s ease, opacity .18s ease;
 }
 
-.chip:hover{opacity:1; transform:translateY(-1px);}
+.chip:hover{
+  color: rgba(255,255,255,.85);
+}
 
 .chip.is-active{
-  background: rgba(255,255,255,.16);
-  border-color: rgba(255,255,255,.18);
+  color: rgba(255,255,255,.95);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
 }
 
-.chip--ghost{
-  background: transparent;
-  border-style: dashed;
-  opacity:.75;
-}
+.chip--ghost{ border:0; }
 
-/* grid cards */
+/* =========================
+   Grid / Cards
+========================= */
 .grid{
   display:grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -43,17 +46,16 @@
 }
 
 .card{
-  border-radius:20px;
-  overflow:hidden;
-  background:rgba(255,255,255,.02);
-  border:1px solid rgba(255,255,255,.08);
-  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+  border-radius: 0;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  transition: transform .18s ease, background .18s ease;
 }
 
 .card:hover{
   transform: translateY(-2px);
-  border-color: rgba(255,255,255,.18);
-  background:rgba(255,255,255,.03);
+  background: rgba(255,255,255,.03);
 }
 
 .card__link{
@@ -62,40 +64,53 @@
   color:inherit;
 }
 
-/* thumb area */
+/* =========================
+   Thumb (image + hover video)
+========================= */
 .card__thumb{
+  position: relative;
   aspect-ratio: 4 / 3;
-  background: #0f0f0f;
+  background:#0f0f0f;
   overflow:hidden;
 }
 
-.card__thumb img{
+/* 両方 absolute で重ねる（videoがある時だけ切り替え） */
+.thumb__img,
+.thumb__video{
+  position:absolute;
+  inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-  transform: scale(1.02);
-  transition: transform .35s ease;
-}
-
-.card__thumb video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transform: scale(1.02);
-  transition: transform .35s ease;
   display:block;
 }
 
-.card:hover .card__thumb video{
+/* 初期状態 */
+.thumb__img{
+  transform: scale(1.02);
+  transition: transform .35s ease, opacity .2s ease;
+}
+
+.thumb__video{
+  opacity:0;
+  transform: scale(1.02);
+  transition: transform .35s ease, opacity .2s ease;
+}
+
+/* hover時 */
+.card:hover .thumb__video{
+  opacity:1;
   transform: scale(1.07);
 }
 
-
-.card:hover .card__thumb img{
+.card:hover .thumb__img{
+  opacity:.15;
   transform: scale(1.07);
 }
 
-/* meta area */
+/* =========================
+   Meta
+========================= */
 .card__meta{
   padding:14px 14px 16px;
 }
@@ -127,69 +142,27 @@
   font-size:12px;
 }
 
-/* ---- Card Thumb Fix ---- */
-.card__thumb{
-  aspect-ratio: 4 / 3;
-  background: #0f0f0f;
-  overflow: hidden;
-}
+/* =========================
+   Disable hover video preview
+   (keep image only)
+========================= */
 
-.card__thumb img,
+/* もし残ってても見えなくする */
+.thumb__video,
 .card__thumb video{
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
+  display: none !important;
 }
 
-/* hover zoom */
-.card:hover .card__thumb img,
-.card:hover .card__thumb video{
-  transform: scale(1.06);
-}
+/* hoverは画像だけ、少しズーム */
 .card__thumb img,
-.card__thumb video{
-  transform: scale(1.02);
-  transition: transform .35s ease;
-}
-
-/* --- card thumb (image + hover video) --- */
-.card__thumb{
-  position: relative;
-  aspect-ratio: 4 / 3;
-  background:#0f0f0f;
-  overflow:hidden;
-  border-radius: 18px;
-}
-
-.thumb__img,
-.thumb__video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-/* 画像は少しだけ拡大（既にやっててもOK） */
 .thumb__img{
+  opacity: 1 !important;
   transform: scale(1.02);
   transition: transform .35s ease, opacity .2s ease;
 }
 
-/* 動画は最初は見えない */
-.thumb__video{
-  opacity:0;
-  transition: opacity .2s ease;
-}
-
-/* hoverで動画を前面に */
-.card:hover .thumb__video{
-  opacity:1;
-}
-
-/* hover時、画像は少し薄くして切替感を出す */
+.card:hover .card__thumb img,
 .card:hover .thumb__img{
-  opacity:.15;
-  transform: scale(1.07);
+  opacity: 1 !important;      /* 画像を薄くしない */
+  transform: scale(1.06);
 }

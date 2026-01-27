@@ -2,30 +2,22 @@
 
 .hero{
   position: relative;
-  height: 100vh;           /* ここが “一面” の正体 */
-  min-height: 560px;
+  /* iOS/Android の URLバーで vh が暴れるのを避ける */
+  min-height: 100svh;
+  min-height: 100vh; /* fallback */
   overflow: hidden;
   background: #000;
 }
 
-/* 動画を敷き詰める */
+/* 動画/画像を敷き詰める */
 .hero__bg{
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-}
-
-/* 文字が読みやすいように暗くする */
-.hero__overlay{
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,.25),
-    rgba(0,0,0,.65)
-  );
+  object-fit: cover;      /* 比率は崩さず、足りない分はトリミング */
+  object-position: center;
+  display: block;
 }
 
 /* 上に乗せる要素 */
@@ -42,4 +34,17 @@
   letter-spacing: .2em;
   opacity: .8;
   padding-bottom: 10px;
+}
+
+/* --- Mobile tuning (optional) --- */
+@media (max-width: 640px){
+  .hero{
+    /* スマホで縦長になりすぎる場合に高さを抑える（70〜90で調整OK） */
+    min-height: 78svh;
+  }
+
+  /* 被写体が切れすぎる場合は位置調整 */
+  .hero__bg{
+    object-position: center 35%;
+  }
 }

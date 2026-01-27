@@ -1,24 +1,48 @@
 <section class="project">
 
-  <div class="project-images">
-    <img src="/img/projects/<%= project.slug %>/01.jpg" alt="">
-    <img src="/img/projects/<%= project.slug %>/02.jpg" alt="">
-    <img src="/img/projects/<%= project.slug %>/03.jpg" alt="">
-  </div>
-
   <div class="project-body">
     <h1 class="project-title"><%= project.title %></h1>
     <p class="project-desc"><%= project.desc %></p>
   </div>
 
-  <div class="project-video">
-    <iframe
-      src="https://www.youtube.com/embed/<%= project.youtubeId %>"
-      title="<%= project.title %>"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-    ></iframe>
+  <div class="project-images js-zoom-gallery" aria-label="Project images">
+    <% (project.images || []).slice(0,3).forEach((src, i) => { %>
+      <button
+        class="project-imageBtn js-zoom"
+        type="button"
+        data-src="<%= src %>"
+        aria-label="Open image <%= i + 1 %>"
+      >
+        <img src="<%= src %>" alt="<%= project.title %> image <%= i + 1 %>">
+      </button>
+    <% }) %>
   </div>
 
+<% if (project.youtubeEmbedUrls && project.youtubeEmbedUrls.length) { %>
+  <% project.youtubeEmbedUrls.forEach((url, idx) => { %>
+    <div class="project-video">
+      <iframe
+        src="<%= url %>"
+        title="<%= project.title %> video <%= idx + 1 %>"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+  <% }) %>
+<% } %>
+
 </section>
+
+<!-- Lightbox（どの詳細ページでも共通で使える） -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox__backdrop" data-close="1"></div>
+
+  <figure class="lightbox__figure" role="dialog" aria-modal="true" aria-label="Image preview">
+    <img class="lightbox__img" id="lightboxImg" alt="">
+    <button class="lightbox__close" type="button" aria-label="Close" data-close="1">×</button>
+
+    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Previous" data-nav="prev">‹</button>
+    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Next" data-nav="next">›</button>
+  </figure>
+</div>

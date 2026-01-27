@@ -1,0 +1,112 @@
+/* =========================
+   Motion system (unified)
+========================= */
+
+/* 動きのルール（全体で統一） */
+:root{
+  --ease: cubic-bezier(.2,.8,.2,1);
+  --dur-fast: .18s;
+  --dur: .55s;
+  --dur-slow: .8s;
+  --dist: 18px;
+}
+
+/* OS設定：動きを減らす */
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -------------------------
+   Reveal (scroll-in)
+------------------------- */
+[data-reveal]{
+  opacity: 0;
+  transform: translateY(var(--dist));
+  filter: blur(6px);
+  transition:
+    opacity var(--dur) var(--ease),
+    transform var(--dur) var(--ease),
+    filter var(--dur) var(--ease);
+  will-change: opacity, transform, filter;
+}
+
+[data-reveal].is-inview{
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* ちょい違う出方（必要なら使う） */
+[data-reveal="fade"]{ transform: none; filter: none; }
+[data-reveal="fade"].is-inview{ opacity: 1; }
+
+[data-reveal="up"]{ transform: translateY(calc(var(--dist) * 1.1)); }
+[data-reveal="up"].is-inview{ transform: translateY(0); }
+
+/* -------------------------
+   Hover motion (unified)
+------------------------- */
+
+/* 既存カードのhoverを“統一された気持ちよさ”に調整 */
+.card{
+  transition:
+    transform var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    background var(--dur-fast) var(--ease);
+  will-change: transform;
+}
+.card:hover{
+  transform: translateY(-3px);
+}
+
+/* サムネのズームも統一 */
+.card__thumb img,
+.card__thumb video{
+  transform: scale(1.02);
+  transition: transform .45s var(--ease);
+  will-change: transform;
+}
+.card:hover .card__thumb img,
+.card:hover .card__thumb video{
+  transform: scale(1.07);
+}
+
+/* hoverで動画を上に出す前提（CSS側で重ねる） */
+.card__thumb{
+  position: relative;
+  overflow: hidden;
+}
+.thumb__img,
+.thumb__video{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 初期は画像だけ見える */
+.thumb__img{ opacity: 1; transition: opacity .25s var(--ease); }
+.thumb__video{
+  opacity: 0;
+  transition: opacity .25s var(--ease);
+}
+
+/* hover時に動画を前面に（JSが再生を担当） */
+.card:hover .thumb__video{ opacity: 1; }
+.card:hover .thumb__img{ opacity: 0; }
+
+/* -------------------------
+   Page fade-in（任意）
+------------------------- */
+body{
+  opacity: 1;
+  transition: opacity .35s var(--ease);
+}
+body.is-fading-out{
+  opacity: 0;
+}

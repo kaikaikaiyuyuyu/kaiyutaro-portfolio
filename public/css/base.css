@@ -5,8 +5,19 @@
   --muted:rgba(255,255,255,.62);
   --line:rgba(255,255,255,.10);
 
+  /* Design tokens */
   --radius:22px;
   --shadow: 0 0 0 1px rgba(255,255,255,.06), 0 18px 60px rgba(0,0,0,.55);
+
+  /* Typography */
+  --font-sans: "IBM Plex Sans JP",
+               system-ui,
+               -apple-system,
+               BlinkMacSystemFont,
+               "Segoe UI",
+               Roboto,
+               "Noto Sans JP",
+               sans-serif;
 }
 
 *{box-sizing:border-box}
@@ -16,6 +27,27 @@ body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", sans-serif;
-  letter-spacing:.01em;
+
+  /* Base font */
+  font-family: var(--font-sans);
+  font-weight: 400;
+  letter-spacing: 0.015em; /* IBM Plex は少し広めが綺麗 */
+  line-height: 1.6;
+
+  /* Better numeric rendering */
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* Headings / brand: keep it clean and slightly tighter */
+h1,h2,h3,
+.brand,
+.project-title,
+.card__title{
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Muted text consistency (optional helpers) */
+.muted{ color: var(--muted); }

@@ -1,15 +1,34 @@
-/* public/css/pages/about.css */
+/* =========================
+   About
+========================= */
 
 .about{
-  padding: 92px 24px 80px; /* fixed header分を避ける */
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
+  padding: 60px 64px 100px;
 }
 
-.about__head{
-  padding: 10px 0 26px;
+/* keep content visually aligned even when .about is full width */
+.about__header,
+.about__profile,
+.about__cols{
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about__header{
+  margin-bottom: 32px;
+  padding-bottom: 18px;
   border-bottom: 1px solid var(--line);
-  margin-bottom: 26px;
+}
+
+.about__eyebrow{
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
 }
 
 .about__title{
@@ -18,144 +37,152 @@
   letter-spacing: .02em;
 }
 
-.about__lead{
-  margin: 10px 0 0;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.about__grid{
-  display: grid;
-  grid-template-columns: 1.05fr .95fr;
-  gap: 28px;
-}
-
 .about__profile{
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 18px;
-  padding: 18px;
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 20px;
-  background: rgba(255,255,255,.02);
-}
-
-.about__avatar{
-  border-radius: 18px;
-  overflow: hidden;
-  background: #0f0f0f;
-  aspect-ratio: 1 / 1;
-}
-
-.about__avatar img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  padding-top: 18px;
 }
 
 .about__name{
-  margin: 0;
-  font-size: 18px;
-  font-weight: 800;
+  margin: 0 0 8px;
+  font-size: 22px;
+  letter-spacing: .02em;
 }
 
 .about__role{
-  margin: 6px 0 0;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.about__dl{
-  margin: 14px 0 0;
-}
-
-.about__row{
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 12px;
-  padding: 8px 0;
-  border-top: 1px solid rgba(255,255,255,.08);
-}
-
-.about__row:first-child{
-  border-top: 0;
-}
-
-.about__row dt{
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.about__row dd{
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.about__links{
-  margin-top: 14px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.about__link{
-  display: inline-flex;
-  align-items: center;
-  height: 34px;
-  padding: 0 12px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: var(--chip);
-  color: var(--text);
-  text-decoration: none;
-  font-size: 13px;
-  opacity: .9;
-}
-
-.about__link:hover{
-  opacity: 1;
-}
-
-.about__text{
-  padding: 18px;
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 20px;
-  background: rgba(255,255,255,.02);
-}
-
-.about__h2{
-  margin: 0 0 10px;
-  font-size: 14px;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  opacity: .9;
-}
-
-.about__text p{
   margin: 0 0 18px;
-  color: var(--text);
-  opacity: .92;
-  line-height: 1.8;
+  color: var(--muted);
   font-size: 13px;
+  letter-spacing: .02em;
+}
+
+.about__bio{
+  margin: 0;
+  color: rgba(255,255,255,.88);
+  font-size: 14px;
+  line-height: 1.95;
+  max-width: 72ch;
+}
+
+.about__cols{
+  margin-top: 42px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 56px;                 /* ←均一感を出す */
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.about__col{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.about__h{
+  margin: 0 0 12px;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  min-height: 1.6em;         /* 見出し位置を揃える */
 }
 
 .about__list{
   margin: 0;
   padding-left: 18px;
-  color: var(--muted);
-  line-height: 1.8;
-  font-size: 13px;
+  color: rgba(255,255,255,.88);
+  line-height: 1.9;
+  font-size: 14px;
 }
 
-@media (max-width: 920px){
-  .about__grid{ grid-template-columns: 1fr; }
-  .about__profile{ grid-template-columns: 180px 1fr; }
+.about__link{
+  color: rgba(255,255,255,.92);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,.18);
 }
 
-@media (max-width: 560px){
-  .about{ padding: 88px 14px 60px; }
-  .about__profile{ grid-template-columns: 1fr; }
-  .about__avatar{ aspect-ratio: 16 / 10; }
+.about__link:hover{
+  border-bottom-color: rgba(255,255,255,.45);
+}
+
+/* responsive */
+@media (max-width: 1100px){
+  .about{ padding-left: 40px; padding-right: 40px; }
+  .about__cols{ gap: 40px; }
+}
+
+@media (max-width: 900px){
+  .about{ padding-left: 24px; padding-right: 24px; }
+  .about__cols{ grid-template-columns: 1fr; }
+}
+
+/* =========================
+   About Hero (Profile Image)
+========================= */
+
+.about-hero{
+  width: 100%;
+  margin-bottom: 48px; /* 下のテキストとの余白 */
+}
+
+.about-hero img{
+  width: 100%;
+  height: min(80vh, 420px); /* 横長・高すぎない */
+  object-fit: cover;
+  display: block;
+
+  /* 世界観を揃える */
+  border-radius: 0;
+}
+
+/* =========================
+   About: Quiet Motion
+========================= */
+
+/* 画像を暗めに + 少しだけ空気感 */
+.about-hero{
+  position: relative;
+  overflow: hidden;
+}
+
+/* 暗め（好みで 0.72〜0.88 あたり調整） */
+.about-hero img{
+  filter: brightness(.78) contrast(1.06) saturate(.92);
+  transform: scale(1.02);
+
+  /* フェードの初期状態 */
+  opacity: 0;
+  transition: opacity .9s ease, transform 1.2s ease, filter 1.2s ease;
+}
+
+/* 表示状態 */
+.about-hero.is-in img{
+  opacity: 1;
+  transform: scale(1.0);
+}
+
+/* 画像の上に薄い黒グラデ（より映画っぽく） */
+.about-hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.38),
+    rgba(0,0,0,.15) 40%,
+    rgba(0,0,0,.55)
+  );
+  pointer-events:none;
+}
+
+/* テキストも静かに出す（JSで .is-in を付ける） */
+.about .reveal{
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .7s ease, transform .9s ease;
+  will-change: opacity, transform;
+}
+
+.about .reveal.is-in{
+  opacity: 1;
+  transform: translateY(0);
 }

@@ -10,14 +10,30 @@
   gap: 48px;
 }
 
+/* ✅ 画像は必ず block にして “白枠っぽい隙間” を潰す */
 .project-images img{
   width: 100%;
   display: block;
-  border-radius: 20px;
+  border-radius: 0px;
+  border: 0;              /* ✅ 念のため */
+  outline: 0;             /* ✅ 念のため */
+}
+
+/* ✅ もし button で包んでるなら、button側も完全透明に */
+.project-imageBtn{
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: zoom-in;
+  text-align: left;
 }
 
 .project-body{
   margin-top: 56px;
+  margin-bottom: 48px;
 }
 
 .project-title{
@@ -32,14 +48,85 @@
   font-size: 14px;
 }
 
+/* 埋め込み動画を大きく（16:9固定） */
 .project-video{
-  margin-top: 80px;
-  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 100%;
+  margin: 28px auto 0;
+  border-radius: 0px;
+  overflow: hidden;
+  border: none;          /* ✅ 枠線を消す */
+  outline: none;         /* ✅ 念のため */
+  box-shadow: none;      /* ✅ 念のため */
+  background: #000;
 }
 
 .project-video iframe{
   width: 100%;
-  height: 100%;
-  border-radius: 20px;
-  border: 1px solid var(--line);
+  aspect-ratio: 16 / 9;
+  height: auto;
+  display: block;
+
+  border: 0;             /* ✅ iframe自身の枠を消す */
+  outline: 0;
 }
+
+/* =========================
+   ✅ 追記：画像クリックで拡大
+========================= */
+.project-images img{
+  cursor: zoom-in;
+}
+
+/* Lightbox overlay */
+.lightbox{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 18px;
+  background: rgba(0,0,0,.72);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+}
+
+.lightbox.is-open{
+  display: flex;
+}
+
+/* ✅ 背景の“境界”が白っぽく見える時の保険 */
+.lightbox{
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Lightbox image */
+.lightbox__img{
+  max-width: min(1100px, 96vw);
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  border-radius: 18px;
+  border: none;          /* ✅ 枠線を消す */
+  outline: none;         /* ✅ 念のため */
+  box-shadow: 0 20px 80px rgba(0,0,0,.55);
+  cursor: zoom-out;
+  display: block;        /* ✅ 余白防止 */
+}
+
+/* （今は使ってないなら消してOK）
+.lightbox__close{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(0,0,0,.35);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+*/
