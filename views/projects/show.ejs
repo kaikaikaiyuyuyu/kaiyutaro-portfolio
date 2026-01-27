@@ -18,8 +18,16 @@
     <% }) %>
   </div>
 
-<% if (project.youtubeEmbedUrls && project.youtubeEmbedUrls.length) { %>
-  <% project.youtubeEmbedUrls.forEach((url, idx) => { %>
+<%
+  // 文字列でも配列でも受けられるように正規化
+  const urlsRaw = project.youtubeEmbedUrls ?? project.youtubeEmbedUrl ?? [];
+  const urls = (Array.isArray(urlsRaw) ? urlsRaw : [urlsRaw])
+    .map(u => (u || '').trim())
+    .filter(Boolean); // "" や null を除外
+%>
+
+<% if (urls.length) { %>
+  <% urls.forEach((url, idx) => { %>
     <div class="project-video">
       <iframe
         src="<%= url %>"
