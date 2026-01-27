@@ -175,7 +175,7 @@ const projects = [
     video: "/video/projects/撮り旅２.mov",
     images: ["/img/projects/toritabi/121.png","/img/projects/toritabi/122.png","/img/projects/toritabi/124.png"],
     youtubeEmbedUrls: [
-    "https://www.youtube.com/embed/09zV9ToiIj8?si=PIqVlpmJ7ZNXL6Z8",
+    "https://www.youtube.com/embed/09zV9ToiIj8?si=PIqVlpmJ7ZNXL6Z8","https://www.youtube.com/embed/W07p0EVPEsQ?si=lZfrN6jILCnjfh72"
   ],
   },
                   {
