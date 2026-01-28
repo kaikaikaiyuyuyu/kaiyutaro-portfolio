@@ -126,7 +126,7 @@ const projects = [
     thumb: "/img/projects/mangetsuityou.JPEG",
     video: "/video/projects/IMG_1124.mov",
     images: ["/img/projects/mangetsuityou/81.JPEG", "/img/projects/mangetsuityou/82.JPEG", "/img/projects/mangetsuityou/83.JPEG"],
-    youtubeEmbedUrl: "https://www.youtube.com/embed/NNxy-ZTM4k8?si=tEBqLz5uwXM0xkTS",
+    youtubeEmbedUrl: "",
   },
           {
     id: "summerschool2023",
