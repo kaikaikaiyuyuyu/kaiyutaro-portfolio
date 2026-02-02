@@ -244,9 +244,9 @@
         const subject = name ? `Contact from ${name}` : "Contact from Portfolio";
 
         const mailto =
-          `mailto:kmc2308@kamiyama.ac.jp` +
-          `?subject=${encodeURIComponent(subject)}` +
-          `&body=${encodeURIComponent(body)}`;
+  `mailto:kaikaikaiyuyuyuk@gmail.com` +
+  `?subject=${encodeURIComponent(subject)}` +
+  `&body=${encodeURIComponent(body)}`;
 
         // ✅ フェードが見えるように少しだけ遅延
         window.setTimeout(() => {
